@@ -124,7 +124,7 @@ class DetailsRenderer {
   _renderTable(details) {
     const element = this._dom.createElement('details', 'lh-details', {open: true});
     if (details.header) {
-      element.appendChild(this._dom.createElement('summary')).textContent = details.header || 'SUP';
+      element.appendChild(this._dom.createElement('summary')).textContent = details.header;
     }
 
     const tableElem = element.createChild('table', 'lh-table lh-table__multicolumn');

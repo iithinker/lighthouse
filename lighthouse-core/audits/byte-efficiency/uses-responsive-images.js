@@ -110,7 +110,7 @@ class UsesResponsiveImages extends ByteEfficiencyAudit {
     }, new Map());
 
     const results = Array.from(resultsMap.values())
-      .filter(item => item.wastedBytes > IGNORE_THRESHOLD_IN_BYTES);
+        .filter(item => item.wastedBytes > IGNORE_THRESHOLD_IN_BYTES);
 
     const headings = [
       {key: 'preview', itemType: 'thumbnail', text: ''},

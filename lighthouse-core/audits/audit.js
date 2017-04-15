@@ -110,7 +110,6 @@ class Audit {
     };
   }
 
-
   /**
    * @param {!Audit} audit
    * @param {!AuditResult} result
@@ -153,7 +152,6 @@ class Audit {
 
 module.exports = Audit;
 
-
 /** @typedef {{
  *     key: string,
  *     itemType: string,
@@ -161,7 +159,6 @@ module.exports = Audit;
  * }}
  */
 Audit.Heading; // eslint-disable-line no-unused-expressions
-
 
 /** @typedef {!Array<!Audit.Heading>} */
 Audit.Headings; // eslint-disable-line no-unused-expressions

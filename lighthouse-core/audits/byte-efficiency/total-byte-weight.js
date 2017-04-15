@@ -71,7 +71,7 @@ class TotalByteWeight extends ByteEfficiencyAudit {
           totalMs: this.bytesToMsString(record.transferSize, networkThroughput),
         };
 
-        totalBytes += totalBytes;
+        totalBytes += result.totalBytes;
         prev.push(result);
         return prev;
       }, []).sort((itemA, itemB) => itemB.totalBytes - itemA.totalBytes).slice(0, 10);
