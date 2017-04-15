@@ -105,7 +105,8 @@ class UnusedBytes extends Audit {
       extendedInfo: {
         formatter: Formatter.SUPPORTED_FORMATS.TABLE,
         value: {results, tableHeadings: result.tableHeadings}
-      }
+      },
+      details: result.details
     };
   }
 

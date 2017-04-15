@@ -34,8 +34,14 @@ class DetailsRenderer {
     switch (details.type) {
       case 'text':
         return this._renderText(details);
+      case 'url':
+        return this._renderURL(details);
+      case 'block':
+        return this._renderBlock(details);
       case 'cards':
         return this._renderCards(/** @type {!DetailsRenderer.CardsDetailsJSON} */ (details));
+      case 'table':
+        return this._renderTable(/** @type {!DetailsRenderer.TableDetailsJSON} */ (details));
       case 'list':
         return this._renderList(/** @type {!DetailsRenderer.ListDetailsJSON} */ (details));
       default:
@@ -50,6 +56,17 @@ class DetailsRenderer {
   _renderText(text) {
     const element = this._dom.createElement('div', 'lh-text');
     element.textContent = text.text;
+    return element;
+  }
+
+
+  /**
+   * @param {!DetailsRenderer.DetailsJSON} text
+   * @return {!Element}
+   */
+  _renderURL(text) {
+    const element = this._dom._renderText(text);
+    element.classList.add('lh-text__url');
     return element;
   }
 
@@ -70,6 +87,33 @@ class DetailsRenderer {
       itemsElem.appendChild(this.render(item));
     }
     element.appendChild(itemsElem);
+    return element;
+  }
+
+
+  /**
+   * @param {!DetailsRenderer.TableDetailsJSON} details
+   * @return {!Element}
+   */
+  _renderTable(details) {
+    const element = this._dom.createElement('details', 'lh-details', {open: true});
+    if (details.header) {
+      element.appendChild(this._dom.createElement('summary')).textContent = 'View details';
+    }
+
+    const tableElem = element.createChild('table', 'lh-table lh-table__multicolumn');
+    const theadTrElem = tableElem.createChild('thead').createChild('tr');
+    for (const heading of details.header) {
+      theadTrElem.createChild('th').appendChild(this.render(heading));
+    }
+
+    const tbodyElem = tableElem.createChild('tbody');
+    for (const row of details.items) {
+      const rowElem = tbodyElem.createChild('tr');
+      for (const columnItem of row) {
+        rowElem.createChild('td').appendChild(this.render(columnItem));
+      }
+    }
     return element;
   }
 

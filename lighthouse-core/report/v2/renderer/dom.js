@@ -24,6 +24,28 @@ class DOM {
   constructor(document) {
     /** @private {!Document} */
     this._document = document;
+
+    this._registerDOMExtensions();
+  }
+
+  _registerDOMExtensions() {
+    if (typeof self === 'undefined' || !self.Element) return;
+    if (self.Element.prototype.createChild) return;
+
+    const instance = this;
+    /**
+     * From devtools' DOMExtension.js, except without 3rd customElementType param
+     * @param {string} elementName
+     * @param {string=} className
+     * @return {!Element}
+     */
+    self.Element.prototype.createChild = function(elementName, className) {
+      const element = instance.createElement(elementName, className);
+      this.appendChild(element);
+      return element;
+    };
+
+    self.DocumentFragment.prototype.createChild = self.Element.prototype.createChild;
   }
 
  /**
