@@ -121,24 +121,19 @@ class UsesOptimizedImages extends ByteEfficiencyAudit {
       debugString = `Lighthouse was unable to decode some of your images: ${urls.join(', ')}`;
     }
 
+    const headings = [
+      {key: 'preview', itemType: 'thumbnail', text: ''},
+      {key: 'url', itemType: 'url', text: 'URL'},
+      {key: 'totalKb', itemType: 'text', text: 'Original'},
+      {key: 'webpSavings', itemType: 'text', text: 'Savings as WebP'},
+      {key: 'jpegSavings', itemType: 'text', text: 'Savings as JPEG'},
+    ];
+
     return {
       passes: hasAllEfficientImages && totalWastedBytes < TOTAL_WASTED_BYTES_THRESHOLD,
       debugString,
       results,
-      tableHeadings: {
-        preview: '',
-        url: 'URL',
-        totalKb: 'Original',
-        webpSavings: 'WebP Savings',
-        jpegSavings: 'JPEG Savings',
-      },
-      headings: {
-        preview: {itemType: 'thumbnail', text: ''},
-        url: {itemType: 'url', text: 'URL'},
-        totalKb: {itemType: 'text', text: 'Original'},
-        webpSavings: {itemType: 'text', text: 'Savings as WebP'},
-        jpegSavings: {itemType: 'text', text: 'Savings as JPEG'},
-      }
+      headings
     };
   }
 }

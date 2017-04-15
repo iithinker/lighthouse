@@ -132,15 +132,18 @@ class OffscreenImages extends ByteEfficiencyAudit {
         const loadedEarly = item.requestStartTime < ttiTimestamp;
         return isWasteful && loadedEarly;
       });
+
+      const headings = [
+        {key: 'preview', itemType: 'thumbnail', text: ''},
+        {key: 'url', itemType: 'url', text: 'URL'},
+        {key: 'totalKb', itemType: 'text', text: 'Original'},
+        {key: 'potentialSavings', itemType: 'text', text: 'Potential Savings'},
+      ];
+
       return {
         debugString,
         results,
-        tableHeadings: {
-          preview: '',
-          url: 'URL',
-          totalKb: 'Original',
-          potentialSavings: 'Potential Savings',
-        }
+        headings,
       };
     });
   }

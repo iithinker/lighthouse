@@ -96,15 +96,8 @@ class UnusedBytes extends Audit {
       displayValue = `Potential savings of ${wastedKbDisplay} (~${wastedMsDisplay})`;
     }
 
-    const headingKeys = Object.keys(result.headings);
-    const tableRows = results.map(item => {
-      return headingKeys.map(key => {
-        return {
-          type: result.headings[key].itemType,
-          text: item[key]
-        };
-      });
-    });
+    const v1TableHeadings = Audit.makeV1TableHeadings(result.headings);
+    const v2TableDetails = Audit.makeV2TableDetails(result.headings, results);
 
     return {
       debugString,
@@ -114,17 +107,9 @@ class UnusedBytes extends Audit {
           !!result.passes,
       extendedInfo: {
         formatter: Formatter.SUPPORTED_FORMATS.TABLE,
-        value: {results, tableHeadings: result.tableHeadings}
+        value: {results, tableHeadings: v1TableHeadings}
       },
-      details: {
-        type: 'table',
-        header: 'whats up',
-        itemHeaders: Object.keys(result.headings).map(key => ({
-          type: 'text',
-          text: result.headings[key].text
-        })),
-        items: tableRows
-      }
+      details: v2TableDetails
     };
   }
 

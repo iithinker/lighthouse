@@ -110,17 +110,20 @@ class UsesResponsiveImages extends ByteEfficiencyAudit {
     }, new Map());
 
     const results = Array.from(resultsMap.values())
-        .filter(item => item.wastedBytes > IGNORE_THRESHOLD_IN_BYTES);
+      .filter(item => item.wastedBytes > IGNORE_THRESHOLD_IN_BYTES);
+
+    const headings = [
+      {key: 'preview', itemType: 'thumbnail', text: ''},
+      {key: 'url', itemType: 'url', text: 'URL'},
+      {key: 'totalKb', itemType: 'text', text: 'Original'},
+      {key: 'potentialSavings', itemType: 'text', text: 'Potential Savings'},
+    ];
+
     return {
       debugString,
       passes: !results.find(item => item.isWasteful),
       results,
-      tableHeadings: {
-        preview: '',
-        url: 'URL',
-        totalKb: 'Original',
-        potentialSavings: 'Potential Savings',
-      }
+      headings,
     };
   }
 }

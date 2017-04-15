@@ -57,6 +57,61 @@ class Audit {
   }
 
   /**
+   * @param  {!Audit.Headings} headings
+   * @return {*}
+   */
+  static makeV1TableHeadings(headings) {
+    const tableHeadings = {};
+    headings.forEach(heading => tableHeadings[heading.key] = heading.text);
+    return tableHeadings;
+  }
+
+  /**
+   * @param  {!Audit.Headings} headings
+   * @param  {!Object} results
+   * @return {!Array<!DetailsRenderer.DetailsJSON>}
+   */
+  static makeV2TableRows(headings, results) {
+    const tableRows = results.map(item => {
+      return headings.map(heading => {
+        return {
+          type: heading.itemType,
+          text: item[heading.key]
+        };
+      });
+    });
+    return tableRows;
+  }
+
+  /**
+   * @param  {!Audit.Headings} headings
+   * @return {!Array<!DetailsRenderer.DetailsJSON>}
+   */
+  static makeV2TableHeaders(headings) {
+    return headings.map(heading => ({
+      type: 'text',
+      text: heading.text
+    }));
+  }
+
+  /**
+   * @param  {!Audit.Headings} headings
+   * @param  {!Object} results
+   * @return {!DetailsRenderer.DetailsJSON}
+   */
+  static makeV2TableDetails(headings, results) {
+    const v2TableHeaders = Audit.makeV2TableHeaders(headings);
+    const v2TableRows = Audit.makeV2TableRows(headings, results);
+    return {
+      type: 'table',
+      header: 'View Details',
+      itemHeaders: v2TableHeaders,
+      items: v2TableRows
+    };
+  }
+
+
+  /**
    * @param {!Audit} audit
    * @param {!AuditResult} result
    * @return {!AuditFullResult}
@@ -97,3 +152,16 @@ class Audit {
 }
 
 module.exports = Audit;
+
+
+/** @typedef {{
+ *     key: string,
+ *     itemType: string,
+ *     text: string,
+ * }}
+ */
+Audit.Heading; // eslint-disable-line no-unused-expressions
+
+
+/** @typedef {!Array<!Audit.Heading>} */
+Audit.Headings; // eslint-disable-line no-unused-expressions
