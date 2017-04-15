@@ -424,4 +424,19 @@ summary.lh-passed-audits-summary::-webkit-details-marker {
   }
 }
 
+
+.lh-table {
+  --image-preview: 24px;
+}
+
+.lh-thumbnail img {
+  height: var(--image-preview);
+  width: var(--image-preview);
+  object-fit: contain;
+}
+
+.lh-thumbnail {
+  width: calc(var(--image-preview) * 2);
+}
+
 /*# sourceURL=report.styles.css */

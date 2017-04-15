@@ -131,6 +131,13 @@ class UsesOptimizedImages extends ByteEfficiencyAudit {
         totalKb: 'Original',
         webpSavings: 'WebP Savings',
         jpegSavings: 'JPEG Savings',
+      },
+      headings: {
+        preview: {itemType: 'thumbnail', text: ''},
+        url: {itemType: 'url', text: 'URL'},
+        totalKb: {itemType: 'text', text: 'Original'},
+        webpSavings: {itemType: 'text', text: 'Savings as WebP'},
+        jpegSavings: {itemType: 'text', text: 'Savings as JPEG'},
       }
     };
   }

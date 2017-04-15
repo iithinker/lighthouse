@@ -36,6 +36,8 @@ class DetailsRenderer {
         return this._renderText(details);
       case 'url':
         return this._renderURL(details);
+      case 'thumbnail':
+        return this._renderThumbnail(details);
       case 'block':
         return this._renderBlock(details);
       case 'cards':
@@ -59,14 +61,38 @@ class DetailsRenderer {
     return element;
   }
 
-
   /**
    * @param {!DetailsRenderer.DetailsJSON} text
    * @return {!Element}
    */
   _renderURL(text) {
-    const element = this._dom._renderText(text);
+    const element = this._renderText(text);
     element.classList.add('lh-text__url');
+    return element;
+  }
+
+  /**
+   * @param {!DetailsRenderer.DetailsJSON} obj
+   * @return {!Element}
+   */
+  _renderThumbnail(obj) {
+    const element = this._dom.createElement('img', 'lh-thumbnail');
+    element.src = obj.text.url;
+    // ignore obj.text.mimeType
+    element.alt = 'Image preview';
+    return element;
+  }
+
+  /**
+   * @param {!DetailsRenderer.DetailsJSON} block
+   * @return {!Element}
+   */
+  _renderBlock(block) {
+    const element = this._dom.createElement('div', 'lh-block');
+    const items = block.items || [];
+    for (const item of items) {
+      element.appendChild(this.render(item));
+    }
     return element;
   }
 
@@ -98,12 +124,12 @@ class DetailsRenderer {
   _renderTable(details) {
     const element = this._dom.createElement('details', 'lh-details', {open: true});
     if (details.header) {
-      element.appendChild(this._dom.createElement('summary')).textContent = 'View details';
+      element.appendChild(this._dom.createElement('summary')).textContent = details.header || 'SUP';
     }
 
     const tableElem = element.createChild('table', 'lh-table lh-table__multicolumn');
     const theadTrElem = tableElem.createChild('thead').createChild('tr');
-    for (const heading of details.header) {
+    for (const heading of details.itemHeaders) {
       theadTrElem.createChild('th').appendChild(this.render(heading));
     }
 

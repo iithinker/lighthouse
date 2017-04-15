@@ -96,6 +96,16 @@ class UnusedBytes extends Audit {
       displayValue = `Potential savings of ${wastedKbDisplay} (~${wastedMsDisplay})`;
     }
 
+    const headingKeys = Object.keys(result.headings);
+    const tableRows = results.map(item => {
+      return headingKeys.map(key => {
+        return {
+          type: result.headings[key].itemType,
+          text: item[key]
+        };
+      });
+    });
+
     return {
       debugString,
       displayValue,
@@ -106,7 +116,15 @@ class UnusedBytes extends Audit {
         formatter: Formatter.SUPPORTED_FORMATS.TABLE,
         value: {results, tableHeadings: result.tableHeadings}
       },
-      details: result.details
+      details: {
+        type: 'table',
+        header: 'whats up',
+        itemHeaders: Object.keys(result.headings).map(key => ({
+          type: 'text',
+          text: result.headings[key].text
+        })),
+        items: tableRows
+      }
     };
   }
 
