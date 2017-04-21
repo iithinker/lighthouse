@@ -70,7 +70,7 @@ class UnusedBytes extends Audit {
 
   /**
    * @param {!{debugString: string=, passes: boolean=, tableHeadings: !Object,
-   *    results: !Array<!Object>}} result
+   *    results: !Array<!Object<string, string>>}} result
    * @param {number} networkThroughput
    * @return {!AuditResult}
    */

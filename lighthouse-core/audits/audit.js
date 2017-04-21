@@ -57,8 +57,8 @@ class Audit {
   }
 
   /**
-   * @param  {!Audit.Headings} headings
-   * @return {*}
+   * @param {!Audit.Headings} headings
+   * @return {!Array<string>}
    */
   static makeV1TableHeadings(headings) {
     const tableHeadings = {};
@@ -67,8 +67,8 @@ class Audit {
   }
 
   /**
-   * @param  {!Audit.Headings} headings
-   * @param  {!Object} results
+   * @param {!Audit.Headings} headings
+   * @param {!Array<!Object<string, string>>} results
    * @return {!Array<!DetailsRenderer.DetailsJSON>}
    */
   static makeV2TableRows(headings, results) {
@@ -84,7 +84,7 @@ class Audit {
   }
 
   /**
-   * @param  {!Audit.Headings} headings
+   * @param {!Audit.Headings} headings
    * @return {!Array<!DetailsRenderer.DetailsJSON>}
    */
   static makeV2TableHeaders(headings) {
@@ -95,8 +95,8 @@ class Audit {
   }
 
   /**
-   * @param  {!Audit.Headings} headings
-   * @param  {!Object} results
+   * @param {!Audit.Headings} headings
+   * @param {!Array<!Object<string, string>>} results
    * @return {!DetailsRenderer.DetailsJSON}
    */
   static makeV2TableDetails(headings, results) {
