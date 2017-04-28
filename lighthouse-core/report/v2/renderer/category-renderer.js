@@ -56,7 +56,6 @@ class CategoryRenderer {
 
     // Append audit details to header section so the entire audit is within a <details>.
     const header = /** @type {!HTMLDetailsElement} */ (this._dom.find('.lh-score__header', tmpl));
-    header.open = audit.score < 100; // expand failed audits
     if (audit.result.details) {
       header.appendChild(this._detailsRenderer.render(audit.result.details));
     }
