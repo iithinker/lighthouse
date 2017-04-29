@@ -39,7 +39,7 @@ class SpeedIndexMetric extends Audit {
           '[Learn more](https://developers.google.com/web/tools/lighthouse/audits/speed-index).',
       optimalValue: SCORING_POINT_OF_DIMINISHING_RETURNS.toLocaleString(),
       scoringMode: Audit.SCORING_MODES.NUMERIC,
-      requiredArtifacts: ['traces']
+      requiredArtifacts: ['trace']
     };
   }
 
@@ -50,7 +50,7 @@ class SpeedIndexMetric extends Audit {
    * @return {!Promise<!AuditResult>} The score from the audit, ranging from 0-100.
    */
   static audit(artifacts) {
-    const trace = artifacts.traces[this.DEFAULT_PASS];
+    const trace = artifacts.trace[this.DEFAULT_PASS];
 
     // run speedline
     return artifacts.requestSpeedline(trace).then(speedline => {

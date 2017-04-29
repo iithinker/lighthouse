@@ -44,7 +44,7 @@ function generateArtifacts(networkRecords = []) {
     requestNetworkRecords: () => {
       return Promise.resolve(networkRecords);
     },
-    traces: {
+    trace: {
       [Audit.DEFAULT_PASS]: {traceEvents: []}
     }
   };

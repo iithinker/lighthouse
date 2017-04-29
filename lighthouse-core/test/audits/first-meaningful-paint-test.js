@@ -30,7 +30,7 @@ const computedArtifacts = Runner.instantiateComputedArtifacts();
 
 function generateArtifactsWithTrace(trace) {
   return Object.assign({
-    traces: {
+    trace: {
       [Audit.DEFAULT_PASS]: {traceEvents: Array.isArray(trace) ? trace : trace.traceEvents}
     }
   }, computedArtifacts);

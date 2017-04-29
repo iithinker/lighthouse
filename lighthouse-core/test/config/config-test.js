@@ -370,7 +370,7 @@ describe('Config', () => {
     it('expands artifacts', () => {
       const config = new Config({
         artifacts: {
-          traces: {
+          trace: {
             defaultPass: path.resolve(__dirname, '../fixtures/traces/trace-user-timings.json')
           },
           devtoolsLog: {
@@ -381,7 +381,7 @@ describe('Config', () => {
       const computed = Runner.instantiateComputedArtifacts();
 
       const traceUserTimings = require('../fixtures/traces/trace-user-timings.json');
-      assert.deepStrictEqual(config.artifacts.traces.defaultPass.traceEvents, traceUserTimings);
+      assert.deepStrictEqual(config.artifacts.trace.defaultPass.traceEvents, traceUserTimings);
       const devtoolsLog = config.artifacts.devtoolsLog.defaultPass;
       assert.equal(devtoolsLog.length, 555);
 
@@ -393,7 +393,7 @@ describe('Config', () => {
     it('expands artifacts with multiple named passes', () => {
       const config = new Config({
         artifacts: {
-          traces: {
+          trace: {
             defaultPass: path.resolve(__dirname, '../fixtures/traces/trace-user-timings.json'),
             otherPass: path.resolve(__dirname, '../fixtures/traces/trace-user-timings.json')
           },
@@ -404,8 +404,8 @@ describe('Config', () => {
         }
       });
       const traceUserTimings = require('../fixtures/traces/trace-user-timings.json');
-      assert.deepStrictEqual(config.artifacts.traces.defaultPass.traceEvents, traceUserTimings);
-      assert.deepStrictEqual(config.artifacts.traces.otherPass.traceEvents, traceUserTimings);
+      assert.deepStrictEqual(config.artifacts.trace.defaultPass.traceEvents, traceUserTimings);
+      assert.deepStrictEqual(config.artifacts.trace.otherPass.traceEvents, traceUserTimings);
       assert.equal(config.artifacts.devtoolsLog.defaultPass.length, 555);
       assert.equal(config.artifacts.devtoolsLog.otherPass.length, 555);
     });
@@ -413,7 +413,7 @@ describe('Config', () => {
     it('handles traces with no TracingStartedInPage events', () => {
       const config = new Config({
         artifacts: {
-          traces: {
+          trace: {
             defaultPass: path.resolve(__dirname,
                             '../fixtures/traces/trace-user-timings-no-tracingstartedinpage.json')
           },
@@ -423,7 +423,7 @@ describe('Config', () => {
         }
       });
 
-      assert.ok(config.artifacts.traces.defaultPass.traceEvents.find(
+      assert.ok(config.artifacts.trace.defaultPass.traceEvents.find(
             e => e.name === 'TracingStartedInPage' && e.args.data.page === '0xhad00p'));
     });
   });
@@ -471,7 +471,7 @@ describe('Config', () => {
 
     it('should merge other values', () => {
       const artifacts = {
-        traces: {defaultPass: '../some/long/path'},
+        trace: {defaultPass: '../some/long/path'},
         devtoolsLog: {defaultPass: 'path/to/devtools/log'},
       };
       const configA = {};

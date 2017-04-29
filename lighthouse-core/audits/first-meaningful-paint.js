@@ -40,7 +40,7 @@ class FirstMeaningfulPaint extends Audit {
       helpText: 'First meaningful paint measures when the primary content of a page is visible. ' +
           '[Learn more](https://developers.google.com/web/tools/lighthouse/audits/first-meaningful-paint).',
       scoringMode: Audit.SCORING_MODES.NUMERIC,
-      requiredArtifacts: ['traces']
+      requiredArtifacts: ['trace']
     };
   }
 
@@ -52,7 +52,7 @@ class FirstMeaningfulPaint extends Audit {
    * @return {!Promise<!AuditResult>} The score from the audit, ranging from 0-100.
    */
   static audit(artifacts) {
-    const trace = artifacts.traces[this.DEFAULT_PASS];
+    const trace = artifacts.trace[this.DEFAULT_PASS];
     return artifacts.requestTraceOfTab(trace).then(tabTrace => {
       if (!tabTrace.firstMeaningfulPaintEvt) {
         throw new Error('No usable `firstMeaningfulPaint(Candidate)` events found in trace');

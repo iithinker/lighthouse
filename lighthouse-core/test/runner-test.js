@@ -86,7 +86,7 @@ describe('Runner', () => {
       ],
 
       artifacts: {
-        traces: {
+        trace: {
           [Audit.DEFAULT_PASS]: path.join(__dirname, '/fixtures/traces/trace-user-timings.json')
         }
       }
@@ -134,7 +134,7 @@ describe('Runner', () => {
           'user-timings'
         ],
         artifacts: {
-          traces: {}
+          trace: {}
         }
       });
 
@@ -142,7 +142,7 @@ describe('Runner', () => {
         const auditResult = results.audits['user-timings'];
         assert.strictEqual(auditResult.rawValue, null);
         assert.strictEqual(auditResult.error, true);
-        assert.ok(auditResult.debugString.includes('traces'));
+        assert.ok(auditResult.debugString.includes('trace'));
       });
     });
 

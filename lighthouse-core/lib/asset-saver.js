@@ -86,11 +86,11 @@ function saveArtifacts(artifacts, pathWithBasename) {
  * @return {!Promise<!Array<{traceData: !Object, html: string}>>}
  */
 function prepareAssets(artifacts, audits) {
-  const passNames = Object.keys(artifacts.traces);
+  const passNames = Object.keys(artifacts.trace);
   const assets = [];
 
   return passNames.reduce((chain, passName) => {
-    const trace = artifacts.traces[passName];
+    const trace = artifacts.trace[passName];
     const devtoolsLog = artifacts.devtoolsLog[passName];
 
     return chain.then(_ => artifacts.requestScreenshots(trace))

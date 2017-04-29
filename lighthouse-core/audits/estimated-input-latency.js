@@ -41,7 +41,7 @@ class EstimatedInputLatency extends Audit {
           'score is higher than Lighthouse\'s target score, users may perceive your app as ' +
           'laggy. [Learn more](https://developers.google.com/web/tools/lighthouse/audits/estimated-input-latency).',
       scoringMode: Audit.SCORING_MODES.NUMERIC,
-      requiredArtifacts: ['traces']
+      requiredArtifacts: ['trace']
     };
   }
 
@@ -84,7 +84,7 @@ class EstimatedInputLatency extends Audit {
    * @return {!Promise<!AuditResult>} The score from the audit, ranging from 0-100.
    */
   static audit(artifacts) {
-    const trace = artifacts.traces[this.DEFAULT_PASS];
+    const trace = artifacts.trace[this.DEFAULT_PASS];
 
     const pending = [
       artifacts.requestTraceOfTab(trace),

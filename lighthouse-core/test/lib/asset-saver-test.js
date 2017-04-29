@@ -33,7 +33,7 @@ describe('asset-saver helper', () => {
   it('generates HTML', () => {
     const artifacts = {
       devtoolsLog: {},
-      traces: {
+      trace: {
         [Audit.DEFAULT_PASS]: {
           traceEvents: []
         }
@@ -50,7 +50,7 @@ describe('asset-saver helper', () => {
       devtoolsLog: {
         [Audit.DEFAULT_PASS]: [{message: 'first'}, {message: 'second'}]
       },
-      traces: {
+      trace: {
         [Audit.DEFAULT_PASS]: {
           traceEvents
         }
@@ -96,7 +96,7 @@ describe('asset-saver helper', () => {
       const countEvents = trace => trace.traceEvents.length;
       const mockArtifacts = {
         devtoolsLog: {},
-        traces: {
+        trace: {
           defaultPass: dbwTrace
         },
         requestScreenshots: () => Promise.resolve([]),

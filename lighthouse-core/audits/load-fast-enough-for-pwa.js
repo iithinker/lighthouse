@@ -43,7 +43,7 @@ class LoadFastEnough4Pwa extends Audit {
       name: 'load-fast-enough-for-pwa',
       description: 'Page load is fast enough on 3G',
       helpText: 'Satisfied if the _Time To Interactive_ duration is shorter than _10 seconds_, as defined by the [PWA Baseline Checklist](https://developers.google.com/web/progressive-web-apps/checklist). Network throttling is required (specifically: RTT latencies >= 150 RTT are expected).',
-      requiredArtifacts: ['traces', 'devtoolsLog']
+      requiredArtifacts: ['trace', 'devtoolsLog']
     };
   }
 
