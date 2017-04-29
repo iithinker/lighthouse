@@ -65,11 +65,11 @@ module.exports = {
   beginNetworkCollect() {},
   endNetworkCollect() {
     return Promise.resolve(
-      recordsFromLogs(require('../fixtures/perflog.json'))
+      recordsFromLogs(require('../fixtures/devtoolslog.json'))
     );
   },
   get devtoolsLog() {
-    return require('../fixtures/perflog.json');
+    return require('../fixtures/devtoolslog.json');
   },
   getSecurityState() {
     return Promise.resolve({

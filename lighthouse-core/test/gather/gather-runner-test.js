@@ -24,7 +24,7 @@ const assert = require('assert');
 const Config = require('../../config/config');
 const path = require('path');
 const recordsFromLogs = require('../../lib/network-recorder').recordsFromLogs;
-const unresolvedPerfLog = require('./../fixtures/unresolved-perflog.json');
+const unresolvedDevtoolsLog = require('./../fixtures/unresolved-devtoolslog.json');
 
 class TestGatherer extends Gatherer {
   constructor() {
@@ -830,7 +830,7 @@ describe('GatherRunner', function() {
       const unresolvedDriver = Object.assign({}, fakeDriver, {
         online: true,
         endNetworkCollect() {
-          return Promise.resolve(recordsFromLogs(unresolvedPerfLog));
+          return Promise.resolve(recordsFromLogs(unresolvedDevtoolsLog));
         }
       });
 
@@ -860,7 +860,7 @@ describe('GatherRunner', function() {
       const unresolvedDriver = Object.assign({}, fakeDriver, {
         online: false,
         endNetworkCollect() {
-          return Promise.resolve(recordsFromLogs(unresolvedPerfLog));
+          return Promise.resolve(recordsFromLogs(unresolvedDevtoolsLog));
         }
       });
 
