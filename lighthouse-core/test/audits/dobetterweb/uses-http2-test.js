@@ -28,7 +28,7 @@ describe('Resources are fetched over http/2', () => {
   it('fails when some resources were requested via http/1.x', () => {
     return UsesHTTP2Audit.audit({
       URL: {finalUrl: URL},
-      devtoolsLogs: {[UsesHTTP2Audit.DEFAULT_PASS]: []},
+      devtoolsLog: {[UsesHTTP2Audit.DEFAULT_PASS]: []},
       requestNetworkRecords: () => Promise.resolve(networkRecords)
     }).then(auditResult => {
       assert.equal(auditResult.rawValue, false);
@@ -45,7 +45,7 @@ describe('Resources are fetched over http/2', () => {
     const entryWithHTTP1 = networkRecords.slice(1, 2);
     return UsesHTTP2Audit.audit({
       URL: {finalUrl: URL},
-      devtoolsLogs: {[UsesHTTP2Audit.DEFAULT_PASS]: []},
+      devtoolsLog: {[UsesHTTP2Audit.DEFAULT_PASS]: []},
       requestNetworkRecords: () => Promise.resolve(entryWithHTTP1)
     }).then(auditResult => {
       assert.ok(auditResult.displayValue.match('1 request was not'));
@@ -55,7 +55,7 @@ describe('Resources are fetched over http/2', () => {
   it('passes when all resources were requested via http/2', () => {
     return UsesHTTP2Audit.audit({
       URL: {finalUrl: URL},
-      devtoolsLogs: {[UsesHTTP2Audit.DEFAULT_PASS]: []},
+      devtoolsLog: {[UsesHTTP2Audit.DEFAULT_PASS]: []},
       requestNetworkRecords: () => Promise.resolve(h2Records)
     }).then(auditResult => {
       assert.equal(auditResult.rawValue, true);

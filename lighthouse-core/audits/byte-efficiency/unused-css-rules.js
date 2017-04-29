@@ -34,7 +34,7 @@ class UnusedCSSRules extends ByteEfficiencyAudit {
       helpText: 'Remove unused rules from stylesheets to reduce unnecessary ' +
           'bytes consumed by network activity. ' +
           '[Learn more](https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery)',
-      requiredArtifacts: ['CSSUsage', 'Styles', 'URL', 'devtoolsLogs']
+      requiredArtifacts: ['CSSUsage', 'Styles', 'URL', 'devtoolsLog']
     };
   }
 
@@ -172,8 +172,8 @@ class UnusedCSSRules extends ByteEfficiencyAudit {
     const usage = artifacts.CSSUsage;
     const pageUrl = artifacts.URL.finalUrl;
 
-    const devtoolsLogs = artifacts.devtoolsLogs[ByteEfficiencyAudit.DEFAULT_PASS];
-    return artifacts.requestNetworkRecords(devtoolsLogs).then(networkRecords => {
+    const devtoolsLog = artifacts.devtoolsLog[ByteEfficiencyAudit.DEFAULT_PASS];
+    return artifacts.requestNetworkRecords(devtoolsLog).then(networkRecords => {
       const indexedSheets = UnusedCSSRules.indexStylesheetsById(styles, networkRecords);
       UnusedCSSRules.countUnusedRules(usage, indexedSheets);
       const results = Object.keys(indexedSheets).map(sheetId => {

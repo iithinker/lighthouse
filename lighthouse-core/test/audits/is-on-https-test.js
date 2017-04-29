@@ -23,7 +23,7 @@ const assert = require('assert');
 describe('Security: HTTPS audit', () => {
   function getArtifacts(networkRecords) {
     return {
-      devtoolsLogs: {[Audit.DEFAULT_PASS]: []},
+      devtoolsLog: {[Audit.DEFAULT_PASS]: []},
       requestNetworkRecords: () => Promise.resolve(networkRecords)
     };
   }

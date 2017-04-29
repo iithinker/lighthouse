@@ -38,7 +38,7 @@ class UsesHTTP2Audit extends Audit {
       description: 'Uses HTTP/2 for its own resources',
       helpText: 'HTTP/2 offers many benefits over HTTP/1.1, including binary headers, ' +
           'multiplexing, and server push. [Learn more](https://developers.google.com/web/tools/lighthouse/audits/http2).',
-      requiredArtifacts: ['URL', 'devtoolsLogs']
+      requiredArtifacts: ['URL', 'devtoolsLog']
     };
   }
 
@@ -47,8 +47,8 @@ class UsesHTTP2Audit extends Audit {
    * @return {!AuditResult}
    */
   static audit(artifacts) {
-    const devtoolsLogs = artifacts.devtoolsLogs[Audit.DEFAULT_PASS];
-    return artifacts.requestNetworkRecords(devtoolsLogs).then(networkRecords => {
+    const devtoolsLog = artifacts.devtoolsLog[Audit.DEFAULT_PASS];
+    return artifacts.requestNetworkRecords(devtoolsLog).then(networkRecords => {
       const finalHost = new URL(artifacts.URL.finalUrl).host;
 
       // Filter requests that are on the same host as the page and not over h2.

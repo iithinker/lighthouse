@@ -36,7 +36,7 @@ class CriticalRequestChains extends Audit {
           'the length of chains, reducing the download size of resources, or ' +
           'deferring the download of unnecessary resources. ' +
           '[Learn more](https://developers.google.com/web/tools/lighthouse/audits/critical-request-chains).',
-      requiredArtifacts: ['devtoolsLogs']
+      requiredArtifacts: ['devtoolsLog']
     };
   }
 
@@ -98,8 +98,8 @@ class CriticalRequestChains extends Audit {
    * @return {!AuditResult} The score from the audit, ranging from 0-100.
    */
   static audit(artifacts) {
-    const devtoolsLogs = artifacts.devtoolsLogs[Audit.DEFAULT_PASS];
-    return artifacts.requestNetworkRecords(devtoolsLogs).then(networkRecords => {
+    const devtoolsLog = artifacts.devtoolsLog[Audit.DEFAULT_PASS];
+    return artifacts.requestNetworkRecords(devtoolsLog).then(networkRecords => {
       return artifacts.requestCriticalRequestChains(networkRecords).then(chains => {
         let chainCount = 0;
         function walk(node, depth) {

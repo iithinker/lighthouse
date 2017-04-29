@@ -260,7 +260,7 @@ describe('Runner', () => {
       ],
 
       artifacts: {
-        devtoolsLogs: {
+        devtoolsLog: {
           defaultPass: path.join(__dirname, '/fixtures/devtoolslog.json')
         }
       }
@@ -463,10 +463,10 @@ describe('Runner', () => {
 
       // Verify a computed artifact
       const artifacts = results.artifacts;
-      const devtoolsLogs = artifacts.devtoolsLogs['firstPass'];
-      assert.equal(Array.isArray(devtoolsLogs), true, 'devtoolsLogs is not an array');
+      const devtoolsLog = artifacts.devtoolsLog['firstPass'];
+      assert.equal(Array.isArray(devtoolsLog), true, 'devtoolsLog is not an array');
 
-      return artifacts.requestNetworkRecords(devtoolsLogs).then(networkRecords => {
+      return artifacts.requestNetworkRecords(devtoolsLog).then(networkRecords => {
         return artifacts.requestCriticalRequestChains(networkRecords).then(chains => {
           assert.ok(chains['93149.1']);
           assert.ok(chains['93149.1'].request);

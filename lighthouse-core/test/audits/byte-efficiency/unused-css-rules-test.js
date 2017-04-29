@@ -131,7 +131,7 @@ describe('Best Practices: unused css rules audit', () => {
   });
 
   describe('#audit', () => {
-    const devtoolsLogs = {defaultPass: []};
+    const devtoolsLog = {defaultPass: []};
     const requestNetworkRecords = () => {
       return Promise.resolve([
         {
@@ -144,7 +144,7 @@ describe('Best Practices: unused css rules audit', () => {
 
     it('ignores missing stylesheets', () => {
       return UnusedCSSAudit.audit_({
-        devtoolsLogs,
+        devtoolsLog,
         requestNetworkRecords,
         URL: {finalUrl: ''},
         CSSUsage: [{styleSheetId: 'a', used: false}],
@@ -156,7 +156,7 @@ describe('Best Practices: unused css rules audit', () => {
 
     it('ignores stylesheets that are 100% used', () => {
       return UnusedCSSAudit.audit_({
-        devtoolsLogs,
+        devtoolsLog,
         requestNetworkRecords,
         URL: {finalUrl: ''},
         CSSUsage: [
@@ -181,7 +181,7 @@ describe('Best Practices: unused css rules audit', () => {
 
     it('fails when lots of rules are unused', () => {
       return UnusedCSSAudit.audit_({
-        devtoolsLogs,
+        devtoolsLog,
         requestNetworkRecords,
         URL: {finalUrl: ''},
         CSSUsage: [
@@ -218,7 +218,7 @@ describe('Best Practices: unused css rules audit', () => {
 
     it('does not include duplicate sheets', () => {
       return UnusedCSSAudit.audit_({
-        devtoolsLogs,
+        devtoolsLog,
         requestNetworkRecords,
         URL: {finalUrl: ''},
         CSSUsage: [
@@ -245,7 +245,7 @@ describe('Best Practices: unused css rules audit', () => {
 
     it('does not include empty or small sheets', () => {
       return UnusedCSSAudit.audit_({
-        devtoolsLogs,
+        devtoolsLog,
         requestNetworkRecords,
         URL: {finalUrl: ''},
         CSSUsage: [

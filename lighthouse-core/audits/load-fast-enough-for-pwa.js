@@ -43,7 +43,7 @@ class LoadFastEnough4Pwa extends Audit {
       name: 'load-fast-enough-for-pwa',
       description: 'Page load is fast enough on 3G',
       helpText: 'Satisfied if the _Time To Interactive_ duration is shorter than _10 seconds_, as defined by the [PWA Baseline Checklist](https://developers.google.com/web/progressive-web-apps/checklist). Network throttling is required (specifically: RTT latencies >= 150 RTT are expected).',
-      requiredArtifacts: ['traces', 'devtoolsLogs']
+      requiredArtifacts: ['traces', 'devtoolsLog']
     };
   }
 
@@ -52,8 +52,8 @@ class LoadFastEnough4Pwa extends Audit {
    * @return {!AuditResult}
    */
   static audit(artifacts) {
-    const devtoolsLogs = artifacts.devtoolsLogs[Audit.DEFAULT_PASS];
-    return artifacts.requestNetworkRecords(devtoolsLogs).then(networkRecords => {
+    const devtoolsLog = artifacts.devtoolsLog[Audit.DEFAULT_PASS];
+    return artifacts.requestNetworkRecords(devtoolsLog).then(networkRecords => {
       const allRequestLatencies = networkRecords.map(record => {
         if (!record._timing) return undefined;
         // Use DevTools' definition of Waiting latency: https://github.com/ChromeDevTools/devtools-frontend/blob/66595b8a73a9c873ea7714205b828866630e9e82/front_end/network/RequestTimingView.js#L164
