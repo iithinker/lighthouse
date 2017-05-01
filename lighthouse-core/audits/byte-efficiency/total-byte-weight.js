@@ -91,8 +91,8 @@ class TotalByteWeight extends ByteEfficiencyAudit {
         {key: 'totalMs', itemType: 'text', text: 'Transfer Time'},
       ];
 
-      const v1TableHeadings = Audit.makeV1TableHeadings(headings);
-      const v2TableDetails = Audit.makeV2TableDetails(headings, results);
+      const v1TableHeadings = ByteEfficiencyAudit.makeV1TableHeadings(headings);
+      const v2TableDetails = ByteEfficiencyAudit.makeV2TableDetails(headings, results);
 
       return {
         rawValue: totalBytes,

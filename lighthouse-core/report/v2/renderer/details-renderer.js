@@ -72,7 +72,7 @@ class DetailsRenderer {
   }
 
   /**
-   * @param {!DetailsRenderer.DetailsJSON} obj
+   * @param {!DetailsRenderer.ThumbnailDetails} obj
    * @return {!Element}
    */
   _renderThumbnail(obj) {
@@ -80,6 +80,7 @@ class DetailsRenderer {
     element.src = obj.text.url;
     // ignore obj.text.mimeType
     element.alt = 'Image preview';
+    element.title = obj.text.url;
     return element;
   }
 
@@ -122,22 +123,24 @@ class DetailsRenderer {
    * @return {!Element}
    */
   _renderTable(details) {
-    const element = this._dom.createElement('details', 'lh-details', {open: true});
+    const element = this._dom.createElement('details', 'lh-details');
     if (details.header) {
       element.appendChild(this._dom.createElement('summary')).textContent = details.header;
     }
 
-    const tableElem = element.createChild('table', 'lh-table lh-table__multicolumn');
-    const theadTrElem = tableElem.createChild('thead').createChild('tr');
+    const tableElem = this._dom.createChildOf(element, 'table', 'lh-table');
+    const theadElem = this._dom.createChildOf(tableElem, 'thead');
+    const theadTrElem = this._dom.createChildOf(theadElem, 'tr');
+
     for (const heading of details.itemHeaders) {
-      theadTrElem.createChild('th').appendChild(this.render(heading));
+      this._dom.createChildOf(theadTrElem, 'th').appendChild(this.render(heading));
     }
 
-    const tbodyElem = tableElem.createChild('tbody');
+    const tbodyElem = this._dom.createChildOf(tableElem, 'tbody');
     for (const row of details.items) {
-      const rowElem = tbodyElem.createChild('tr');
+      const rowElem = this._dom.createChildOf(tbodyElem, 'tr');
       for (const columnItem of row) {
-        rowElem.createChild('td').appendChild(this.render(columnItem));
+        this._dom.createChildOf(rowElem, 'td').appendChild(this.render(columnItem));
       }
     }
     return element;
@@ -204,3 +207,21 @@ DetailsRenderer.ListDetailsJSON; // eslint-disable-line no-unused-expressions
  * }}
  */
 DetailsRenderer.CardsDetailsJSON; // eslint-disable-line no-unused-expressions
+
+/** @typedef {{
+ *     type: string,
+ *     header: ({text: string}|undefined),
+ *     items: !Array<!DetailsRenderer.DetailsJSON>,
+ *     itemHeaders: !Array<!DetailsRenderer.DetailsJSON>
+ * }}
+ */
+DetailsRenderer.TableDetailsJSON; // eslint-disable-line no-unused-expressions
+
+
+/** @typedef {{
+ *     type: string,
+ *     url: ({text: string}|undefined),
+ *     mimeType: ({text: string}|undefined)
+ * }}
+ */
+DetailsRenderer.ThumbnailDetails; // eslint-disable-line no-unused-expressions

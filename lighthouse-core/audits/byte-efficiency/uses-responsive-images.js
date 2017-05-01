@@ -80,8 +80,7 @@ class UsesResponsiveImages extends ByteEfficiencyAudit {
 
   /**
    * @param {!Artifacts} artifacts
-   * @return {{results: !Array<Object>, tableHeadings: Object,
-   *     passes: boolean=, debugString: string=}}
+   * @return {{results: !Array<Object>, headings: !Audit.Headings, passes: boolean=, debugString: string=}}
    */
   static audit_(artifacts) {
     const images = artifacts.ImageUsage;

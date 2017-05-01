@@ -67,6 +67,8 @@ class Audit {
   }
 
   /**
+   * Table cells will use the type specified in headings[x].itemType. However a custom type
+   * can be provided: results[x].propName = {type: 'code', text: '...'}
    * @param {!Audit.Headings} headings
    * @param {!Array<!Object<string, string>>} results
    * @return {!Array<!DetailsRenderer.DetailsJSON>}
@@ -74,9 +76,12 @@ class Audit {
   static makeV2TableRows(headings, results) {
     const tableRows = results.map(item => {
       return headings.map(heading => {
+        const value = item[heading.key];
+        if (typeof value === 'object' && value.type) return value;
+
         return {
           type: heading.itemType,
-          text: item[heading.key]
+          text: value[heading.key]
         };
       });
     });

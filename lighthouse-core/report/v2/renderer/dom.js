@@ -24,30 +24,6 @@ class DOM {
   constructor(document) {
     /** @private {!Document} */
     this._document = document;
-
-    this._installDOMExtensions();
-  }
-
-  /**
-   * Add some API sugar
-   */
-  _installDOMExtensions() {
-    if (typeof self === 'undefined' || !self.Element) return;
-    if (self.Element.prototype.createChild) return;
-    const instance = this;
-
-    /**
-     * From devtools' DOMExtension.js (minus the 3rd customElementType param)
-     * @param {string} elementName
-     * @param {string=} className
-     * @return {!Element}
-     */
-    self.Element.prototype.createChild = function(elementName, className) {
-      const element = instance.createElement(elementName, className);
-      this.appendChild(element);
-      return element;
-    };
-    self.DocumentFragment.prototype.createChild = self.Element.prototype.createChild;
   }
 
  /**
@@ -69,6 +45,21 @@ class DOM {
         element.setAttribute(key, value);
       }
     });
+    return element;
+  }
+
+ /**
+   * @param {!Element} parentElem
+   * @param {string} elementName
+   * @param {string=} className
+   * @param {!Object<string, (string|undefined)>=} attrs Attribute key/val pairs.
+   *     Note: if an attribute key has an undefined value, this method does not
+   *     set the attribute on the node.
+   * @return {!Element}
+   */
+  createChildOf(parentElem, elementName, className, attrs) {
+    const element = this.createElement(elementName, className, attrs);
+    parentElem.appendChild(element);
     return element;
   }
 
