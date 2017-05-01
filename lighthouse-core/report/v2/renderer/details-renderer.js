@@ -38,8 +38,6 @@ class DetailsRenderer {
         return this._renderURL(details);
       case 'thumbnail':
         return this._renderThumbnail(details);
-      case 'block':
-        return this._renderBlock(details);
       case 'cards':
         return this._renderCards(/** @type {!DetailsRenderer.CardsDetailsJSON} */ (details));
       case 'table':
@@ -72,31 +70,18 @@ class DetailsRenderer {
   }
 
   /**
-   * @param {!DetailsRenderer.ThumbnailDetails} obj
-   * @return {!DocumentFragment}
+   * @param {!DetailsRenderer.ThumbnailDetails} value
+   * @return {!Element}
    */
   _renderThumbnail(value) {
     if (/^image/.test(value.mimeType) === false) {
-      return this.dom.createDocumentFragment();
+      return this._dom.createElement('span');
     }
 
     const element = this._dom.createElement('img', 'lh-thumbnail');
     element.src = value.url;
     element.alt = 'Image preview';
     element.title = value.url;
-    return element;
-  }
-
-  /**
-   * @param {!DetailsRenderer.DetailsJSON} block
-   * @return {!Element}
-   */
-  _renderBlock(block) {
-    const element = this._dom.createElement('div', 'lh-block');
-    const items = block.items || [];
-    for (const item of items) {
-      element.appendChild(this.render(item));
-    }
     return element;
   }
 
@@ -123,10 +108,10 @@ class DetailsRenderer {
 
   /**
    * @param {!DetailsRenderer.TableDetailsJSON} details
-   * @return {!DocumentFragment}
+   * @return {!Element}
    */
   _renderTable(details) {
-    if (!details.items.length) return this._dom.createDocumentFragment();
+    if (!details.items.length) return this._dom.createElement('span');
 
     const element = this._dom.createElement('details', 'lh-details');
     if (details.header) {
@@ -216,7 +201,7 @@ DetailsRenderer.CardsDetailsJSON; // eslint-disable-line no-unused-expressions
 /** @typedef {{
  *     type: string,
  *     header: ({text: string}|undefined),
- *     items: !Array<!DetailsRenderer.DetailsJSON>,
+ *     items: !Array<!Array<!DetailsRenderer.DetailsJSON>>,
  *     itemHeaders: !Array<!DetailsRenderer.DetailsJSON>
  * }}
  */

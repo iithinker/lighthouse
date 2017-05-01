@@ -63,13 +63,6 @@ class DOM {
     return element;
   }
 
-   /**
-   * @return {!DocumentFragment}
-   */
-  createDocumentFragment() {
-    return this._document.createDocumentFragment();
-  }
-
   /**
    * @param {string} selector
    * @param {!Node} context
