@@ -105,7 +105,7 @@ class UsesOptimizedImages extends ByteEfficiencyAudit {
       results.push({
         url,
         isCrossOrigin: !image.isSameOrigin,
-        preview: {url: image.url, mimeType: image.mimeType},
+        preview: {url: image.url, mimeType: image.mimeType, type: 'thumbnail'},
         totalBytes: image.originalSize,
         wastedBytes: webpSavings.bytes,
         webpSavings: this.toSavingsString(webpSavings.bytes, webpSavings.percent),

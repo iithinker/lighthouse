@@ -68,6 +68,7 @@ class UsesResponsiveImages extends ByteEfficiencyAudit {
     return {
       url,
       preview: {
+        type: 'thumbnail',
         url: image.networkRecord.url,
         mimeType: image.networkRecord.mimeType
       },

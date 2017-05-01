@@ -81,7 +81,7 @@ class Audit {
 
         return {
           type: heading.itemType,
-          text: value[heading.key]
+          text: value
         };
       });
     });

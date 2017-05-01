@@ -73,14 +73,17 @@ class DetailsRenderer {
 
   /**
    * @param {!DetailsRenderer.ThumbnailDetails} obj
-   * @return {!Element}
+   * @return {!DocumentFragment}
    */
-  _renderThumbnail(obj) {
+  _renderThumbnail(value) {
+    if (/^image/.test(value.mimeType) === false) {
+      return this.dom.createDocumentFragment();
+    }
+
     const element = this._dom.createElement('img', 'lh-thumbnail');
-    element.src = obj.text.url;
-    // ignore obj.text.mimeType
+    element.src = value.url;
     element.alt = 'Image preview';
-    element.title = obj.text.url;
+    element.title = value.url;
     return element;
   }
 
@@ -120,9 +123,11 @@ class DetailsRenderer {
 
   /**
    * @param {!DetailsRenderer.TableDetailsJSON} details
-   * @return {!Element}
+   * @return {!DocumentFragment}
    */
   _renderTable(details) {
+    if (!details.items.length) return this._dom.createDocumentFragment();
+
     const element = this._dom.createElement('details', 'lh-details');
     if (details.header) {
       element.appendChild(this._dom.createElement('summary')).textContent = details.header;
