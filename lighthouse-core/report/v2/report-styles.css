@@ -425,12 +425,12 @@ summary.lh-passed-audits-summary::-webkit-details-marker {
 }
 
 .lh-table {
-  --image-preview: 24px;
+  --image-preview-size: 24px;
 }
 
 .lh-thumbnail {
-  height: var(--image-preview);
-  width: var(--image-preview);
+  height: var(--image-preview-size);
+  width: var(--image-preview-size);
   object-fit: contain;
 }
 
