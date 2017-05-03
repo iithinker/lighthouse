@@ -212,9 +212,9 @@ function expandArtifacts(artifacts) {
     });
   }
 
-  if (artifacts.devtoolsLog) {
-    Object.keys(artifacts.devtoolsLog).forEach(key => {
-      artifacts.devtoolsLog[key] = require(artifacts.devtoolsLog[key]);
+  if (artifacts.devtoolsLogs) {
+    Object.keys(artifacts.devtoolsLogs).forEach(key => {
+      artifacts.devtoolsLogs[key] = require(artifacts.devtoolsLogs[key]);
     });
   }
 

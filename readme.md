@@ -323,7 +323,7 @@ yarn unit
 
 ## Lighthouse as trace processor
 
-Lighthouse can be used to analyze trace and performance data collected from other tools (like WebPageTest and ChromeDriver). The `traces` and `devtoolsLog` artifact items can be provided using a string for the absolute path on disk. The devtoolsLog array is captured from the Network domain (a la ChromeDriver's [`enableNetwork` option](https://sites.google.com/a/chromium.org/chromedriver/capabilities#TOC-perfLoggingPrefs-object)) and reformatted slightly. As an example, here's a trace-only run that's reporting on user timings and critical request chains:
+Lighthouse can be used to analyze trace and performance data collected from other tools (like WebPageTest and ChromeDriver). The `traces` and `devtoolsLogs` artifact items can be provided using a string for the absolute path on disk. The devtoolsLogs array is captured from the Network domain (a la ChromeDriver's [`enableNetwork` option](https://sites.google.com/a/chromium.org/chromedriver/capabilities#TOC-perfLoggingPrefs-object)) and reformatted slightly. As an example, here's a trace-only run that's reporting on user timings and critical request chains:
 
 ### `config.json`
 
@@ -338,7 +338,7 @@ Lighthouse can be used to analyze trace and performance data collected from othe
     "traces": {
       "defaultPass": "/User/me/lighthouse/lighthouse-core/test/fixtures/traces/trace-user-timings.json"
     },
-    "devtoolsLog": {
+    "devtoolsLogs": {
       "defaultPass": "/User/me/lighthouse/lighthouse-core/test/fixtures/traces/devtoolslog.json"
     }
   },

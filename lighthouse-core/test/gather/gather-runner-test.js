@@ -483,9 +483,9 @@ describe('GatherRunner', function() {
     return GatherRunner.run(passes, options)
       .then(artifacts => {
         assert.ok(artifacts.traces.firstPass);
-        assert.ok(artifacts.devtoolsLog.firstPass);
+        assert.ok(artifacts.devtoolsLogs.firstPass);
         assert.ok(artifacts.traces.secondPass);
-        assert.ok(artifacts.devtoolsLog.secondPass);
+        assert.ok(artifacts.devtoolsLogs.secondPass);
       });
   });
 

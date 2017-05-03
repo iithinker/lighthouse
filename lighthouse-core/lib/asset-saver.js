@@ -91,7 +91,7 @@ function prepareAssets(artifacts, audits) {
 
   return passNames.reduce((chain, passName) => {
     const trace = artifacts.traces[passName];
-    const devtoolsLog = artifacts.devtoolsLog[passName];
+    const devtoolsLog = artifacts.devtoolsLogs[passName];
 
     return chain.then(_ => artifacts.requestScreenshots(trace))
       .then(screenshots => {

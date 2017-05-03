@@ -32,7 +32,7 @@ const Audit = require('../../audits/audit.js');
 describe('asset-saver helper', () => {
   it('generates HTML', () => {
     const artifacts = {
-      devtoolsLog: {},
+      devtoolsLogs: {},
       traces: {
         [Audit.DEFAULT_PASS]: {
           traceEvents: []
@@ -47,7 +47,7 @@ describe('asset-saver helper', () => {
 
   describe('saves files', function() {
     const artifacts = {
-      devtoolsLog: {
+      devtoolsLogs: {
         [Audit.DEFAULT_PASS]: [{message: 'first'}, {message: 'second'}]
       },
       traces: {
@@ -95,7 +95,7 @@ describe('asset-saver helper', () => {
     it('adds fake events to trace', () => {
       const countEvents = trace => trace.traceEvents.length;
       const mockArtifacts = {
-        devtoolsLog: {},
+        devtoolsLogs: {},
         traces: {
           defaultPass: dbwTrace
         },

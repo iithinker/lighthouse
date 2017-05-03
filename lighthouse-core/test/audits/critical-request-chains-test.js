@@ -90,7 +90,7 @@ const EMPTY_REQUEST_CHAIN = {};
 
 const mockArtifacts = (mockChain) => {
   return {
-    devtoolsLog: {
+    devtoolsLogs: {
       [Audit.DEFAULT_PASS]: []
     },
     requestNetworkRecords: () => {

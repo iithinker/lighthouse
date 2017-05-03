@@ -38,7 +38,7 @@ function generateTTIResults(ttiValue) {
 
 function generateArtifacts(networkRecords = []) {
   return {
-    devtoolsLog: {
+    devtoolsLogs: {
       [Audit.DEFAULT_PASS]: []
     },
     requestNetworkRecords: () => {

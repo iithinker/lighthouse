@@ -37,7 +37,7 @@ class HTTPS extends Audit {
           'in on the communications between your app and your users, and is a prerequisite for ' +
           'HTTP/2 and many new web platform APIs. ' +
           '[Learn more](https://developers.google.com/web/tools/lighthouse/audits/https).',
-      requiredArtifacts: ['devtoolsLog']
+      requiredArtifacts: ['devtoolsLogs']
     };
   }
 
@@ -54,8 +54,8 @@ class HTTPS extends Audit {
    * @return {!AuditResult}
    */
   static audit(artifacts) {
-    const devtoolsLog = artifacts.devtoolsLog[Audit.DEFAULT_PASS];
-    return artifacts.requestNetworkRecords(devtoolsLog).then(networkRecords => {
+    const devtoolsLogs = artifacts.devtoolsLogs[Audit.DEFAULT_PASS];
+    return artifacts.requestNetworkRecords(devtoolsLogs).then(networkRecords => {
       const insecureRecords = networkRecords
           .filter(record => !HTTPS.isSecureRecord(record))
           .map(record => ({url: URL.getDisplayName(record.url, {preserveHost: true})}));

@@ -311,7 +311,7 @@ class GatherRunner {
     const driver = options.driver;
     const tracingData = {
       traces: {},
-      devtoolsLog: {},
+      devtoolsLogs: {},
       networkRecords: {}
     };
 
@@ -359,7 +359,7 @@ class GatherRunner {
               }
 
               // passData.networkRecords is now discarded and not added onto artifacts
-              tracingData.devtoolsLog[passName] = passData.devtoolsLog;
+              tracingData.devtoolsLogs[passName] = passData.devtoolsLog;
 
               if (passIndex === 0) {
                 urlAfterRedirects = runOptions.url;
