@@ -21,7 +21,7 @@ const Audit = require('../../audits/speed-index-metric.js');
 const assert = require('assert');
 
 const emptyTraceStub = {
-  trace: {
+  traces: {
     defaultPass: {}
   }
 };

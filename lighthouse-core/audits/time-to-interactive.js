@@ -33,7 +33,7 @@ class TTIMetric extends Audit {
           '[Learn more](https://developers.google.com/web/tools/lighthouse/audits/time-to-interactive).',
       optimalValue: SCORING_TARGET.toLocaleString() + 'ms',
       scoringMode: Audit.SCORING_MODES.NUMERIC,
-      requiredArtifacts: ['trace']
+      requiredArtifacts: ['traces']
     };
   }
 
@@ -153,7 +153,7 @@ class TTIMetric extends Audit {
    * @return {!Promise<!AuditResult>} The score from the audit, ranging from 0-100.
    */
   static audit(artifacts) {
-    const trace = artifacts.trace[Audit.DEFAULT_PASS];
+    const trace = artifacts.traces[Audit.DEFAULT_PASS];
 
     let debugString;
     // We start looking at Math.Max(FMP, visProgress[0.85])

@@ -194,10 +194,10 @@ function expandArtifacts(artifacts) {
     return null;
   }
   // currently only trace logs and performance logs should be imported
-  if (artifacts.trace) {
-    Object.keys(artifacts.trace).forEach(key => {
+  if (artifacts.traces) {
+    Object.keys(artifacts.traces).forEach(key => {
       log.log('info', 'Normalizng trace contents into expected state...');
-      let trace = require(artifacts.trace[key]);
+      let trace = require(artifacts.traces[key]);
       // Before Chrome 54.0.2816 (codereview.chromium.org/2161583004), trace was
       // an array of trace events. After this point, trace is an object with a
       // traceEvents property. Normalize to new format.
@@ -208,7 +208,7 @@ function expandArtifacts(artifacts) {
       }
       trace = cleanTrace(trace);
 
-      artifacts.trace[key] = trace;
+      artifacts.traces[key] = trace;
     });
   }
 

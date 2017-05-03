@@ -38,7 +38,7 @@ Artifacts.prototype.HTMLWithoutJavaScript;
 Artifacts.prototype.HTTPS;
 
 /** @type {!Array<!Object>} */
-Artifacts.prototype.trace;
+Artifacts.prototype.traces;
 
 /** @type {!Object<!Array>} */
 Artifacts.prototype.networkRecords;

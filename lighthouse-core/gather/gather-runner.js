@@ -310,7 +310,7 @@ class GatherRunner {
   static run(passes, options) {
     const driver = options.driver;
     const tracingData = {
-      trace: {},
+      traces: {},
       devtoolsLog: {},
       networkRecords: {}
     };
@@ -355,7 +355,7 @@ class GatherRunner {
               // pass into tracingData.
               const passName = config.passName || Audit.DEFAULT_PASS;
               if (config.recordTrace) {
-                tracingData.trace[passName] = passData.trace;
+                tracingData.traces[passName] = passData.trace;
               }
 
               // passData.networkRecords is now discarded and not added onto artifacts

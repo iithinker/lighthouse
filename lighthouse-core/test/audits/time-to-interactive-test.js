@@ -25,7 +25,7 @@ const pwaTrace = require('../fixtures/traces/progressive-app.json');
 describe('Performance: time-to-interactive audit', () => {
   it('evaluates valid input correctly', () => {
     const artifacts = Object.assign({
-      trace: {
+      traces: {
         [TimeToInteractive.DEFAULT_PASS]: {
           traceEvents: pwaTrace
         }

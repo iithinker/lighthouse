@@ -32,7 +32,7 @@ class UserTimings extends Audit {
       helpText: 'Consider instrumenting your app with the User Timing API to create custom, ' +
           'real-world measurements of key user experiences. ' +
           '[Learn more](https://developers.google.com/web/tools/lighthouse/audits/user-timing).',
-      requiredArtifacts: ['trace'],
+      requiredArtifacts: ['traces'],
       informative: true
     };
   }
@@ -120,7 +120,7 @@ class UserTimings extends Audit {
    * @return {!AuditResult}
    */
   static audit(artifacts) {
-    const trace = artifacts.trace[Audit.DEFAULT_PASS];
+    const trace = artifacts.traces[Audit.DEFAULT_PASS];
     return artifacts.requestTraceOfTab(trace).then(tabTrace => {
       const userTimings = this.filterTrace(tabTrace).filter(UserTimings.excludeBlacklisted);
 

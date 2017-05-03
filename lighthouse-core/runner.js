@@ -83,8 +83,8 @@ class Runner {
 
       // Basic check that the traces (gathered or loaded) are valid.
       run = run.then(artifacts => {
-        for (const passName of Object.keys(artifacts.trace || {})) {
-          const trace = artifacts.trace[passName];
+        for (const passName of Object.keys(artifacts.traces || {})) {
+          const trace = artifacts.traces[passName];
           if (!Array.isArray(trace.traceEvents)) {
             throw new Error(passName + ' trace was invalid. `traceEvents` was not an array.');
           }
@@ -187,7 +187,7 @@ class Runner {
 
         // If trace required, check that DEFAULT_PASS trace exists.
         // TODO: need pass-specific check of networkRecords and traces.
-        const noTrace = artifactName === 'trace' && !artifacts.trace[Audit.DEFAULT_PASS];
+        const noTrace = artifactName === 'traces' && !artifacts.traces[Audit.DEFAULT_PASS];
 
         if (noArtifact || noTrace) {
           log.warn('Runner',
