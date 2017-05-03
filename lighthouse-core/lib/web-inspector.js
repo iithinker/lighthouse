@@ -237,6 +237,7 @@ module.exports = (function() {
 
   /**
    * Creates a new WebInspector NetworkManager using a mocked Target.
+   * @param {!Driver=} driver
    * @return {!WebInspector.NetworkManager}
    */
   WebInspector.NetworkManager.createWithFakeTarget = function(driver) {
@@ -244,6 +245,10 @@ module.exports = (function() {
     const fakeNetworkAgent = {
       enable() {},
       getResponseBody(requestId, onComplete) {
+        if (!driver) {
+          throw new Error('No driver available to query for request content');
+        }
+
         driver.sendCommand('Network.getResponseBody', {
           requestId,
         })

@@ -22,7 +22,8 @@ const log = require('../lib/log.js');
 
 class NetworkRecorder extends EventEmitter {
   /**
-   * Creates an instance of NetworkRecorder.
+   * Creates an instance of NetworkRecorder. When created without a `driver`,
+   * requests in the array will not have access to request content.
    * @param {!Array} recordArray
    * @param {!Driver=} driver
    */
@@ -168,15 +169,17 @@ class NetworkRecorder extends EventEmitter {
   }
 
   /**
-   * Construct network records from a log of devtools protocol messages.
-   * @param {!DevtoolsLog} log
+   * Construct network records from a log of devtools protocol messages. If a
+   * driver is provided, it will be used for request content lookups.
+   * @param {!DevtoolsLog} devtoolsLog
+   * @param {!Driver=} driver
    * @return {!Array<!WebInspector.NetworkRequest>}
    */
-  static recordsFromLogs(log) {
+  static recordsFromLogs(devtoolsLog, driver) {
     const records = [];
-    const nr = new NetworkRecorder(records);
-    log.forEach(event => {
-      nr.dispatch(event.method, event.params);
+    const nr = new NetworkRecorder(records, driver);
+    devtoolsLog.forEach(message => {
+      nr.dispatch(message.method, message.params);
     });
     return records;
   }

@@ -154,7 +154,7 @@ describe('Browser Driver', () => {
   });
 
   it('will update the options.url through redirects', () => {
-    const networkRecorder = driverStub._networkRecorder = new NetworkRecorder([]);
+    const networkRecorder = driverStub._networkStatus = new NetworkRecorder([]);
     const opts = {url: req1.url};
     driverStub.enableUrlUpdateIfRedirected(opts);
 
